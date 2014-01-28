@@ -1,0 +1,89 @@
+<div id="main" class="animate {{transitionState}}" ng-controller="HomeController">
+      
+      
+  
+  <div id="google-map" class="" ng-controller="GoogleMapsController">
+    <div ng-controller="getTripzzies"></div>
+
+    <input type="text" id="autocomplete" ng-model='name'  placeholder="Find, Share and Request places">
+    
+
+    <div class="box-cont" id="search_form_box" ng-animate="'box'">
+      <div class="clear"></div>
+      <div id="loader_class" class="hidden">
+        <img style="margin:20px 0 0 178px;" src="http://tripzzy.com/index.php/../img/ajax_loader_16x16.gif" width="16" height="16" alt="Loading">
+      </div>
+
+      <div id="flicker_image" class="" >
+        <!--source of image will be replaced after flicker fetching-->
+        <img id="flickr" src="">
+      </div>
+
+      <div id="was_or_been_there" class="been_buttons">
+        <form ng-submit="submit"  class="">
+          <div class="simpleBtn" onclick="jsonFlickrApi()">
+            <a href="" ng-click="show()">
+              <button type="submit">I have been there</button>
+            </a>
+          </div>
+        </form>
+        <form ng-submit="submit" class="">
+          <div class="simpleBtn">
+            <button id="request_btn" type="submit">I wanna go there</button>
+          </div>
+        </form>
+      </div>
+      <div class="clear"></div>
+
+    </div>
+
+    <div id="share-tripzzy" ng-show="open" class="share-tripzzy" ng-controller="TripzzyCtrl"> 
+      <ng-include src="templatePath" scope="" onload=""></ng-include>
+    </div>
+
+    <div class="google-map"
+           id="googlemap"
+           center="map.center"
+           zoom="map.zoom"
+           draggable="true"
+           dragging="map.dragging"
+           bounds="map.bounds"
+           events="map.events"
+           options="map.options">
+    </div>
+
+  </div>
+
+  <div id="carousel" ng-controller="Carousel">
+    <div  class="photo-container" data-carousel data-carousel-class="photo-carousel" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)">
+      <div class="photo-grid span12">
+        <span ng-repeat="photo in photos">
+          <img ng-src="{{getPhotoUrl(photo)}}">
+        </span>
+      </div>
+    </div>
+    <a style="float: left;"  data-ng-show="hasPrevious()" class="previous" data-ng-click="previous()"></a>
+    <span style="float: left;" class="previous" data-ng-hide="hasPrevious()"></span>
+    <a style="float: right;" class="next" data-ng-show="hasNext()" data-ng-click="next()"></a>
+    <span style="float: right;" class="next" data-ng-hide="hasNext()"></span>
+  </div>
+
+  <!-- <div>
+      <h2>My todos</h2>
+      <p ng-repeat="todo in todos">
+        <input type="text" ng-model="todo">
+        <a class="btn" ng-click="removeTodo($index)">X</a>
+      </p>
+      <form ng-submit="addTodo()">
+        <div class="controls form-inline">
+            <input type="text" ng-model="todo" size="20">
+            <input type="submit" class="btn btn-primary" value="Add">
+        </div>
+      </form>
+  </div> -->
+
+
+  
+
+
+</div>

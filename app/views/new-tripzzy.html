@@ -1,0 +1,177 @@
+<div class="tripzzy-animate">
+
+	<a href="" ng-click="close()"><div class="close" ></div></a>
+
+	<div id="gallery" ng-controller="GalleryCtrl">
+
+        <div class="mainimageshell">
+            <div class="viewwindow">
+                <ul id="fullscroller" class="fullsizelist" ng-style="listposition" >
+                    <li ng-repeat="image in galleryData">
+                        <img id="fullsize" class="large" ng-src="{{image}}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <div class="thumbsshell">
+            <div class="thumbswrapper">
+                <ul>
+                    <li ng-repeat="image in galleryData">
+                        <div class="thumbwrapper">
+                            <a ng-href="" ng-click="scrollTo(image,$index)">
+                                <img class="thumbnail" ng-src="{{image}}" />
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</div>
+
+	<div class="tripzzy-name">
+      	<h4 class="fll">Share a Tripzzy for <strong>{{name}}</strong></h4>
+
+        <div class="pages">
+            <div class="nuber-current" id="first_page_indicator">1</div>
+            <div class="nuber" id="second_page_indicator">2</div>
+        </div>
+                
+    </div>
+    <div class="box-content">
+        <div class="box-inner">
+            <div ng-controller="DatepickerDemoCtrl" class="datepicker">
+                <h4 class="title_spacing">When were you there?</h4>
+
+                <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+
+                <div style="display:inline-block;">
+                  <div class="well well-sm" ng-model="dt">
+                      <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div ng-controller="TabsDemoCtrl">
+
+            <tabset>
+                <tab heading="Accommodation">
+                    <h4 class="title_spacing"> Place of stay (Hotel, apartment...) </h4>
+                    <input id="hotel" placeholder="Enter the name of the place you stayed">
+                    <h4 class="title_spacing" >Personal ratings</h4>
+                    <div id="rating" ng-controller="RatingDemoCtrl">
+                        <dt>Value for Money</dt>
+                        <rating value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                        
+                        <dt>Location</dt>
+                        <rating value="rate1" max="max" readonly="isReadonly" on-hover="hoveringOver1(value)" on-leave="overStar1 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar1 && !isReadonly">{{percent}}%</span>
+
+                        <dt>Cleanliness</dt>
+                        <rating value="rate2" max="max" readonly="isReadonly" on-hover="hoveringOver2(value)" on-leave="overStar2 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar2 && !isReadonly">{{percent}}%</span>
+
+                        <dt>Service</dt>
+                        <rating value="rate3" max="max" readonly="isReadonly" on-hover="hoveringOver3(value)" on-leave="overStar3 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar3 && !isReadonly">{{percent}}%</span>
+
+                        <dt>Food Quality</dt>
+                        <rating value="rate4" max="max" readonly="isReadonly" on-hover="hoveringOver4(value)" on-leave="overStar4 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar4 && !isReadonly">{{percent}}%</span>
+
+                        <dt>Facilities (Gym, Pool, Spa)</dt>
+                        <rating value="rate5" max="max" readonly="isReadonly" on-hover="hoveringOver5(value)" on-leave="overStar5 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar5 && !isReadonly">{{percent}}%</span>
+
+                        <dt>Trendiness</dt>
+                        <rating value="rate6" max="max" readonly="isReadonly" on-hover="hoveringOver6(value)" on-leave="overStar6 = null"></rating>
+                        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar6 && !isReadonly">{{percent}}%</span>
+                        
+                    </div>
+                    <div class="textRates">
+                        <textarea placeholder="Comment on your rating!" style="height: 170px;" rows="8" id="rate_comment" name="rate_comment" onkeydown="limitText('rate_comment', 'countdown_rate_comment', 500);" onkeyup="limitText('rate_comment', 'countdown_rate_comment', 500);"></textarea>
+                        <span id="countdown_rate_comment" class="countdown">500 / 500</span>
+                    </div>
+
+                    <div class="tags" ng-controller="TagsCtrl">
+
+                        <tags-input ng-model="tags" placeholder="Enter the name of the place you stayed"
+                                      custom-class="foo"
+                                      replace-spaces-with-dashes="false"
+                                      add-on-blur="true"
+                                      allowed-tags-pattern="^[a-zA-Z0-9\s<@\.]+$"
+                                      enable-editing-last-tag="true"
+                            min-tags="3">
+                            <auto-complete source="loadItems($query)"
+                                           debounce-delay="0"
+                                           min-length="1"
+                                           max-results-to-show="10">
+                            </auto-complete>
+                        </tags-input>
+
+                        
+                        <div class="add_tags">
+                            
+                            <label class="clear">With whom?</label>
+                            <ul class="tagsinput add_tags clear" id="with_whom_feature_tags" style="cursor:pointer;">
+                                
+                                <li ng-repeat="item in items" class="tagmenu">
+                                     <span ng-click="add(item.name)">{{item.name}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div> 
+
+                        <div class="add_tags">
+                            
+                            <label class="clear">Why?</label>
+                            <ul class="tagsinput add_tags clear" id="with_whom_feature_tags" style="cursor:pointer;">
+                                
+                                <li ng-repeat="whyitem in whyitems" class="tagmenu">
+                                     <span ng-click="addwhy(whyitem.tag)">{{whyitem.tag}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div> 
+
+                        <div class="add_tags">
+                            
+                            <label class="clear">Where?</label>
+                            <ul class="tagsinput add_tags clear" id="with_whom_feature_tags" style="cursor:pointer;">
+                                
+                                <li ng-repeat="whereitem in whereitems" class="tagmenu">
+                                     <span ng-click="addwhere(whereitem.tag)">{{whereitem.tag}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div> 
+
+                        <div class="add_tags">
+                            
+                            <label class="clear">Type?</label>
+                            <ul class="tagsinput add_tags clear" id="with_whom_feature_tags" style="cursor:pointer;">
+                                
+                                <li ng-repeat="typeitem in typeitems" class="tagmenu">
+                                     <span ng-click="addtype(typeitem.tag)">{{typeitem.tag}}</span>
+                                </li>
+                               
+                            </ul>
+                        </div> 
+                                      
+
+                    </div>
+                    
+
+                </tab>
+                <tab heading="Places and activities">Static content 2</tab>
+            </tabset>
+
+        </div>
+
+        
+
+    </div>
+
+</div>
